@@ -1,9 +1,6 @@
-### Repo Name:
-`secure-vault-backend`
 
-### README.md:
 
-```markdown
+
 # Secure Vault Backend
 
 Welcome to the **Secure Vault Backend**! This project demonstrates a secure web application that utilizes a password-based authentication system to control access to a "secret vault" of sensitive information. The backend is built with **Node.js** and **Express**, while the frontend is simple and minimal, relying on static HTML and CSS.
@@ -76,5 +73,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Created with ❤️ by Saad Tiwana  
 Email: [saadhayat799@gmail.com](mailto:saadhayat799@gmail.com)  
 GitHub: [@saadhtiwana](https://github.com/saadhtiwana)
-```
 
