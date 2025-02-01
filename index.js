@@ -18,6 +18,10 @@ const writeLog = (message) => {
 };
 
 var userIsAuthorised = false;
+var userDatabase = {
+  "admin": { password: "SaadisTopG;", role: "admin" },
+  "user": { password: "password123", role: "user" }
+};
 
 // Session setup
 app.use(session({
@@ -32,13 +36,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Middleware for password check
 function passwordCheck(req, res, next) {
+  const username = req.body["username"];
   const password = req.body["password"];
-  if (password === "SaadisTopG;") {
+  
+  if (userDatabase[username] && userDatabase[username].password === password) {
     userIsAuthorised = true;
     req.session.userIsAuthorized = true;
-    writeLog("User authorized successfully.");
+    req.session.userRole = userDatabase[username].role;
+    writeLog(`${username} logged in successfully.`);
   } else {
     req.session.userIsAuthorized = false;
+    writeLog(`Failed login attempt for username: ${username}`);
   }
   next();
 }
@@ -78,7 +86,7 @@ app.post("/logout", (req, res) => {
 
 // Admin route to view server logs
 app.get("/admin/logs", (req, res) => {
-  if (req.session.userIsAuthorized) {
+  if (req.session.userIsAuthorized && req.session.userRole === "admin") {
     fs.readFile(logFilePath, "utf8", (err, data) => {
       if (err) {
         res.status(500).send("Error reading log file.");
@@ -91,12 +99,50 @@ app.get("/admin/logs", (req, res) => {
   }
 });
 
+// API for user information
+app.get("/api/userinfo", (req, res) => {
+  if (req.session.userIsAuthorized) {
+    const userInfo = {
+      username: req.session.userIsAuthorized ? req.body["username"] : null,
+      role: req.session.userRole || null,
+      status: "Authorized"
+    };
+    res.json(userInfo);
+  } else {
+    res.json({ status: "Not Authorized" });
+  }
+});
+
+// Simulating a simple user database interaction
+app.get("/api/users", (req, res) => {
+  if (req.session.userIsAuthorized && req.session.userRole === "admin") {
+    res.json(userDatabase);
+  } else {
+    res.status(403).send("Forbidden: You do not have admin privileges.");
+  }
+});
+
+// File upload route (simulating file upload functionality)
+import multer from "multer";
+const upload = multer({ dest: 'uploads/' });
+
+app.post("/upload", upload.single("file"), (req, res) => {
+  const file = req.file;
+  if (file) {
+    writeLog(`File uploaded: ${file.originalname}`);
+    res.send(`File uploaded successfully: ${file.originalname}`);
+  } else {
+    res.status(400).send("No file uploaded.");
+  }
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   writeLog(`Error: ${err.message}`);
   res.status(500).send("Something went wrong.");
 });
 
+// Server start log
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
   writeLog("Server started successfully.");
