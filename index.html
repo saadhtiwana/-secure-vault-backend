@@ -1,145 +1,15 @@
 <!-- 
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>Saad's Secrets</title>
-  <style>
-    /* General Styles */
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #0a0a2e 0%, #1a1a4a 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Segoe UI', sans-serif;
-      color: #00f3ff;
-    }
-
-    h1 {
-      font-size: 4rem;
-      text-shadow: 0 0 15px #00f3ff, 0 0 30px #00f3ff88, 0 0 45px #00f3ff44;
-      margin-bottom: 3rem;
-      letter-spacing: 4px;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-
-    /* Form Styles */
-    form {
-      background: rgba(10, 10, 46, 0.3);
-      backdrop-filter: blur(10px);
-      padding: 2.5rem;
-      border-radius: 15px;
-      border: 2px solid #00f3ff55;
-      box-shadow: 0 0 30px #00f3ff33;
-      width: 80%;
-      max-width: 400px;
-      box-sizing: border-box;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 1.5rem;
-      font-size: 1.2rem;
-      text-shadow: 0 0 8px #00f3ff55;
-    }
-
-    input[type="password"] {
-      width: 100%;
-      padding: 1rem;
-      margin-bottom: 2rem;
-      background: transparent;
-      border: none;
-      border-bottom: 2px solid #00f3ff;
-      color: #00f3ff;
-      font-size: 1.2rem;
-      transition: all 0.3s ease;
-    }
-
-    input[type="password"]:focus {
-      border-bottom-color: #00f3ff;
-      box-shadow: 0 0 15px #00f3ff33;
-    }
-
-    input[type="password"]:blur {
-      border-bottom-color: #00f3ff55;
-      box-shadow: none;
-    }
-
-    input[type="submit"] {
-      width: 100%;
-      padding: 1rem;
-      background: #00f3ff;
-      border: none;
-      border-radius: 5px;
-      color: #0a0a2e;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    input[type="submit"]:hover {
-      background: #00ffff;
-      box-shadow: 0 0 20px #00f3ff88;
-    }
-
-    /* Keyframe Animation */
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff88, 0 0 30px #00f3ff44;
-      }
-
-      to {
-        text-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff88, 0 0 60px #00f3ff44;
-      }
-    }
-
-    /* Responsive Design */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2.5rem;
-        margin-bottom: 2rem;
-      }
-
-      form {
-        padding: 1.5rem;
-        max-width: 90%;
-      }
-
-      label {
-        font-size: 1rem;
-      }
-
-      input[type="password"], input[type="submit"] {
-        padding: 0.8rem;
-        font-size: 1rem;
-      }
-    }
-  </style>
 </head>
-
 <body>
   <h1>▲ SECRETS ▼</h1>
-
   <form action="/check" method="POST">
-    <label for="password">ACCESS CODE:</label>
-    <input 
-      type="password" 
-      id="password" 
-      name="password" 
-      required 
-    >
-    <input 
-      type="submit" 
-      value="AUTHENTICATE" 
-    >
+    <input type="password" name="password" required>
+    <input type="submit" value="AUTHENTICATE">
   </form>
-
 </body>
-
 </html>
 -->
